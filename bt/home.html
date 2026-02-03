@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <style>
+            
+        body {
+           background-image: linear-gradient(to right, #ff0000, #ff6900, #fda000, #efcf00, #d9fb03);
+        }
+        .container {
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(92, 172, 11, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+         /* nav home about contact */
+         /* start */
+        #navbar_home a {
+            text-decoration: none;
+            color: white;
+        }
+        #navbar_home a:hover {
+            text-decoration: none;
+            color: #ddd;
+            font-weight: bold;
+
+            
+        }
+        /* end nav home about contact */
+
+         /* login register */
+        /* start */
+        #login_register a {
+            text-decoration: none;
+            color: white;
+        }
+        #login_register a:hover {
+            text-decoration: none;
+            color: #ddd;
+            font-weight: bold;
+              
+        }
+        /* end login register */
+
+        /* carousel start */
+        .container_1 {
+            height: 400px;
+            max-width:100%;
+            margin: 25px 25px 0px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow:fixed;
+        }
+        </style>
+    </head>
+
+    <body>
+        <header><!-- place navbar here -->
+             <!-- nav start here -->
+             <nav>
+         <div class="container-fluid  text-white p-3" style="background-color: rgb(13, 13, 13);">
+            <div class=""><a href="home.html"><img src="" alt="logo" height="50px" width="50px"></a></div>
+         <h1 class="text-center">Welcome to Home Page</h1>
+            <div class="d-flex justify-content-center align-items-center" id="navbar_home">
+                <div><a href="home.html" class="ms-3 bi bi-house">Home</a></div>
+                <div><a href="about.html" class="ms-3 bi bi-info-circle">about</a></div>
+                <div><a href="" class="ms-3 bi bi-person-plus">contact</a></div>
+            </div>
+            <!-- login register -->
+            <div class="d-flex justify-content-end align-items-end" id="login_register">
+            <a href="login.html" class="ms-3">Login</a>
+            <a href="register.html" class="ms-3">Register</a>
+            </div>
+        </div>
+             </nav>
+                <!-- nav end here -->
+        </header>
+        <main>
+            
+        <div class="container_1">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-indicators">
+            <button data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
+            <button data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+            <button data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/carousel_img1.jpg" class="d-block w-100" alt="Image 1" style="height:500px;">
+            </div>
+            <div class="carousel-item">
+                <img src="img/carousel_img2.jpg" class="d-block w-100" alt="Image 2" style="height:500px;">
+            </div>
+            <div class="carousel-item">
+                <img src="img/carousel_img3.jpg" class="d-block w-100" alt="Image 3" style="height:500px;">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</div>
+
+
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+
+        body {
+           background-image: linear-gradient(to right, #ff0000, #ff6900, #fda000, #efcf00, #d9fb03);
+        }
+        .container {
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(92, 172, 11, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+         /* nav home about contact */
+         /* start */
+        #navbar_home a {
+            text-decoration: none;
+            color: white;
+        }
+        #navbar_home a:hover {
+            text-decoration: none;
+            color: #ddd;
+            font-weight: bold;
+
+            
+        }
+        /* end nav home about contact */
+
+
+        /* login register */
+        /* start */
+        #login_register a {
+            text-decoration: none;
+            color: white;
+        }
+        #login_register a:hover {
+            text-decoration: none;
+            color: #ddd;
+            font-weight: bold;
+              
+        }
+        /* end login register */
+
+    </style>
+</head>
+<body>
+    <header>
+            <!-- place navbar here -->
+             <!-- nav start here -->
+             <nav>
+         <div class="container-fluid  text-white p-3" style="background-color: rgb(13, 13, 13);">
+            <div class=""><a href="home.html"><img src="" alt="logo" height="50px" width="50px"></a></div>
+         <h1 class="text-center">Welcome to Home Page</h1>
+            <div class="d-flex justify-content-center align-items-center" id="navbar_home">
+                <div><a href="home.html" class="ms-3 bi bi-house">Home</a></div>
+                <div><a href="about.html" class="ms-3 bi bi-info-circle">about</a></div>
+                <div><a href="" class="ms-3 bi bi-person-plus">contact</a></div>
+            </div>
+            <!-- login register -->
+            <div class="d-flex justify-content-end align-items-end" id="login_register">
+            <a href="login.html" class="ms-3">Login</a>
+            <a href="register.html" class="ms-3">Register</a>
+            </div>
+        </div>
+             </nav>
+                <!-- nav end here -->
+        </header>
+   <div class="container mt-4 ">
+    <h3 class="text-primary d-flex justify-content-center align-items-center">Registration Form</h3>
+    <form class="mt-3">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Enter name" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="Enter email" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Enter password" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" placeholder="Confirm password" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" placeholder="Enter phone number" required>
+        </div>
+        <div class="mb-3"> 
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" placeholder="Enter address" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" required>
+                <option selected>Select gender</option>
+                <option value=" 1">Male</option>    
+                <option value="2">Female</option>
+                <option value="3">Other</option>    
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Bio</label>
+            <textarea class="form-control" rows="3" placeholder="Tell us about yourself"></textarea>    
+        </div>
+        <button class="btn btn-primary w-100">Submit</button>
+        <div class="">
+            <br>
+            <a href="login.html" class="d-flex justify-content-center align-items-center">login or sign in ?</a>
+        </div>
+        
+    </form>
+   </div>
+    
+</body>
+</html>

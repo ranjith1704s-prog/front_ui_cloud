@@ -1,0 +1,36 @@
+c:/Users/91994/Downloads/bootstrap/
+├── Bootstrap_Carousel_Form_FormInputs.ipynb
+├── boy.png
+├── bt/
+│   ├── home.html
+│   ├── login.html
+│   └── register.html
+├── btproject/
+│   └── demohomepage.html
+├── day1/
+│   ├── day1.ipynb
+│   ├── demo1.html
+│   ├── image.png
+│   └── task1.html
+├── day2/
+│   ├── day2.ipynb
+│   ├── demo11.html
+│   ├── demo2.html
+│   └── task1.html
+├── day3/
+│   ├── Bootstrap_5_Modal_Complete_Guide.ipynb
+│   ├── day3.ipynb
+│   ├── demo3.html
+│   ├── form.html
+│   ├── form1.html
+│   ├── index1.html
+│   └── task3.html
+├── day4/
+│   ├── day4.ipynb
+│   └── task4.html
+├── demo1.html
+├── image.png
+├── index.html
+├── index1.html
+├── model.html
+└── offcanvas.html

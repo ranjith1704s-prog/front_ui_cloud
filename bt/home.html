@@ -8,7 +8,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <!-- Bootstrap CSS v5.2.1 -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -317,7 +317,7 @@
          <h1 class="text-center">Welcome to Home Page</h1>
             <div class="d-flex justify-content-center align-items-center" id="navbar_home">
                 <div><a href="home.html" class="ms-3 bi bi-house">Home</a></div>
-                <div><a href="about.html" class="ms-3 bi bi-info-circle">about</a></div>
+                <div><a href="cart.html" class="ms-3 bi bi-info-circle">cart</a></div>
                 <div><a href="" class="ms-3 bi bi-person-plus">contact</a></div>
             </div>
             <!-- login register -->
@@ -365,6 +365,320 @@
       <div class="container_2">
         
        <div class="row">
+            <!-- Food Card 1 -->
+            <div class="col-lg-4 col-md-6 mb-4 " >
+                <div class="food-card scroll-area"  >
+                    <img src="img/dosa1.jpg" class="food-img" alt="Gourmet Burger">
+                    <div class="card-body" id="scroll_area_1">
+                        <h3 class="food-title">Idli</h3>
+                        <p class="food-description"><b style="color: black;">Health Benefits:</b>Light and easy to digest,Good for gut health (fermented),Low fat, good for weight control,Safe for all ages</p>
+                        
+                        <div class="price-container">
+                            <span class="current-price">RS:60</span>
+                            <span class="original-price">RS:90</span>
+                            <span class="discount-badge">19% OFF</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease-btn" data-target="burger">
+                                    <i class="bi bi-dash-lg"></i>
+                                </button>
+                                <span class="quantity-value" id="burger-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="burger">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                            
+                            <button class="favorite-btn" id="burger-favorite" data-target="burger">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    
+                    
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <span class="rating-count ms-2">(128)</span>
+                            </div>
+                            
+                            <button class="add-to-cart-btn " data-item="burger">
+                                <i class="bi bi-cart-plus" style="background-color: #c90014;"></i> Add to Cart
+                            </button>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Food Card 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="food-card scroll-area">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" class="food-img" alt="Pepperoni Pizza">
+                    <div class="card-body">
+                        <h3 class="food-title">Pepperoni Pizza</h3>
+                        <p class="food-description">Classic pizza with mozzarella cheese, tomato sauce, and generous portions of pepperoni.</p>
+                        
+                        <div class="price-container">
+                            <span class="current-price">$16.50</span>
+                            <span class="original-price">$19.99</span>
+                            <span class="discount-badge">17% OFF</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease-btn" data-target="pizza">
+                                    <i class="bi bi-dash-lg"></i>
+                                </button>
+                                <span class="quantity-value" id="pizza-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="pizza">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                            
+                            <button class="favorite-btn active" id="pizza-favorite" data-target="pizza">
+                                <i class="bi bi-heart-fill"></i>
+                            </button>
+                        </div>
+                    
+                    
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <span class="rating-count ms-2">(94)</span>
+                            </div>
+                            
+                            <button class="add-to-cart-btn" data-item="pizza">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Food Card 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="food-card scroll-area">
+                    <img src="https://images.unsplash.com/photo-1559715745-e1b33a271c8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" class="food-img" alt="Caesar Salad">
+                    <div class="card-body">
+                        <h3 class="food-title">Caesar Salad</h3>
+                        <p class="food-description">Fresh romaine lettuce with Caesar dressing, croutons, parmesan cheese, and grilled chicken.</p>
+                        
+                        <div class="price-container">
+                            <span class="current-price">$10.99</span>
+                            <!-- No discount for this item -->
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease-btn" data-target="salad">
+                                    <i class="bi bi-dash-lg"></i>
+                                </button>
+                                <span class="quantity-value" id="salad-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="salad">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                            
+                            <button class="favorite-btn" id="salad-favorite" data-target="salad">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    
+                    
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                                <span class="rating-count ms-2">(206)</span>
+                            </div>
+                            
+                            <button class="add-to-cart-btn" data-item="salad">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Food Card 4 -->
+            <div class="col-lg-4 col-md-6 mb-1">
+                <div class="food-card scroll-area">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80" class="food-img" alt="Gourmet Burger">
+                    <div class="card-body">
+                        <h3 class="food-title">Gourmet Burger</h3>
+                        <p class="food-description">Juicy beef patty with fresh lettuce, tomato, onion, and our special sauce served in a brioche bun.</p>
+                        
+                        <div class="price-container">
+                            <span class="current-price">$12.99</span>
+                            <span class="original-price">$15.99</span>
+                            <span class="discount-badge">19% OFF</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease-btn" data-target="ice">
+                                    <i class="bi bi-dash-lg"></i>
+                                </button>
+                                <span class="quantity-value" id="ice-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="ice">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                            
+                            <button class="favorite-btn" id="burger-favorite" data-target="ice">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    
+                    
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <span class="rating-count ms-2">(128)</span>
+                            </div>
+                            
+                            <button class="add-to-cart-btn" data-item="ice">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Food Card 5 -->
+            <div class="col-lg-4 col-md-6 mb-1">
+                <div class="food-card scroll-area">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80" class="food-img" alt="Gourmet Burger">
+                    <div class="card-body">
+                        <h3 class="food-title">Gourmet Burger</h3>
+                        <p class="food-description">Juicy beef patty with fresh lettuce, tomato, onion, and our special sauce served in a brioche bun.</p>
+                        
+                        <div class="price-container">
+                            <span class="current-price">$12.99</span>
+                            <span class="original-price">$15.99</span>
+                            <span class="discount-badge">19% OFF</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease-btn" data-target="juice">
+                                    <i class="bi bi-dash-lg"></i>
+                                </button>
+                                <span class="quantity-value" id="juice-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="juice">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                            
+                            <button class="favorite-btn" id="burger-favorite" data-target="juice">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                   
+                    
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </span>
+                                    <span class="rating-count ms-2">(128)</span>
+                                </div>
+                                
+                                <button class="add-to-cart-btn" data-item="juice">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <!-- Food Card 6 -->
+            <div class="col-lg-4 col-md-6 mb-1">
+                <div class="food-card scroll-area">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80" class="food-img" alt="Gourmet Burger">
+                    <div class="card-body">
+                        <h3 class="food-title">Gourmet Burger</h3>
+                        <p class="food-description">Juicy beef patty with fresh lettuce, tomato, onion, and our special sauce served in a brioche bun.</p>
+                        
+                        <div class="price-container">
+                            <span class="current-price">$12.99</span>
+                            <span class="original-price">$15.99</span>
+                            <span class="discount-badge">19% OFF</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease-btn" data-target="cake">
+                                    <i class="bi bi-dash-lg"></i>
+                                </button>
+                                <span class="quantity-value" id="cake-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="cake">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                            
+                            <button class="favorite-btn" id="burger-favorite" data-target="cake">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                
+                    
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    </span>
+                                    <span class="rating-count ms-2">(128)</span>
+                                </div>
+                                
+                                <button class="add-to-cart-btn" data-item="cake">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
             <!-- Food Card 1 -->
             <div class="col-lg-4 col-md-6 mb-4 " >
                 <div class="food-card scroll-area"  >
@@ -538,16 +852,16 @@
                         
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="quantity-controls">
-                                <button class="quantity-btn decrease-btn" data-target="burger">
+                                <button class="quantity-btn decrease-btn" data-target="ice">
                                     <i class="bi bi-dash-lg"></i>
                                 </button>
-                                <span class="quantity-value" id="burger-quantity">1</span>
-                                <button class="quantity-btn increase-btn" data-target="burger">
+                                <span class="quantity-value" id="ice-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="ice">
                                     <i class="bi bi-plus-lg"></i>
                                 </button>
                             </div>
                             
-                            <button class="favorite-btn" id="burger-favorite" data-target="burger">
+                            <button class="favorite-btn" id="burger-favorite" data-target="ice">
                                 <i class="bi bi-heart"></i>
                             </button>
                         </div>
@@ -566,7 +880,7 @@
                                 <span class="rating-count ms-2">(128)</span>
                             </div>
                             
-                            <button class="add-to-cart-btn" data-item="burger">
+                            <button class="add-to-cart-btn" data-item="ice">
                                 <i class="bi bi-cart-plus"></i> Add to Cart
                             </button>
                         </div>
@@ -590,16 +904,16 @@
                         
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="quantity-controls">
-                                <button class="quantity-btn decrease-btn" data-target="burger">
+                                <button class="quantity-btn decrease-btn" data-target="juice">
                                     <i class="bi bi-dash-lg"></i>
                                 </button>
-                                <span class="quantity-value" id="burger-quantity">1</span>
-                                <button class="quantity-btn increase-btn" data-target="burger">
+                                <span class="quantity-value" id="juice-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="juice">
                                     <i class="bi bi-plus-lg"></i>
                                 </button>
                             </div>
                             
-                            <button class="favorite-btn" id="burger-favorite" data-target="burger">
+                            <button class="favorite-btn" id="burger-favorite" data-target="juice">
                                 <i class="bi bi-heart"></i>
                             </button>
                         </div>
@@ -618,7 +932,7 @@
                                     <span class="rating-count ms-2">(128)</span>
                                 </div>
                                 
-                                <button class="add-to-cart-btn" data-item="burger">
+                                <button class="add-to-cart-btn" data-item="juice">
                                     <i class="bi bi-cart-plus"></i> Add to Cart
                                 </button>
                             </div>
@@ -642,16 +956,16 @@
                         
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="quantity-controls">
-                                <button class="quantity-btn decrease-btn" data-target="burger">
+                                <button class="quantity-btn decrease-btn" data-target="cake">
                                     <i class="bi bi-dash-lg"></i>
                                 </button>
-                                <span class="quantity-value" id="burger-quantity">1</span>
-                                <button class="quantity-btn increase-btn" data-target="burger">
+                                <span class="quantity-value" id="cake-quantity">1</span>
+                                <button class="quantity-btn increase-btn" data-target="cake">
                                     <i class="bi bi-plus-lg"></i>
                                 </button>
                             </div>
                             
-                            <button class="favorite-btn" id="burger-favorite" data-target="burger">
+                            <button class="favorite-btn" id="burger-favorite" data-target="cake">
                                 <i class="bi bi-heart"></i>
                             </button>
                         </div>
@@ -670,26 +984,19 @@
                                     <span class="rating-count ms-2">(128)</span>
                                 </div>
                                 
-                                <button class="add-to-cart-btn" data-item="burger">
+                                <button class="add-to-cart-btn" data-item="cake">
                                     <i class="bi bi-cart-plus"></i> Add to Cart
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
             
         </div>
         </div>
-        <!-- Cart Summary (optional) -->
-        <div class="alert alert-info mt-4 d-flex justify-content-between align-items-center" id="cart-summary">
-            <div>
-                <i class="bi bi-cart-check me-2"></i>
-                <span id="cart-count">0</span> items in cart | Total: $<span id="cart-total">0.00</span>
-            </div>
-            <button class="btn btn-outline-primary btn-sm" id="clear-cart">Clear Cart</button>
-        </div>
-    </div>
+        
         <footer>
             <!-- place footer here -->
         </footer>
@@ -700,9 +1007,15 @@
     <script>
         // Cart state
         const cart = {
+
+            
             burger: { quantity: 0, price: 12.99 },
             pizza: { quantity: 0, price: 16.50 },
-            salad: { quantity: 0, price: 10.99 }
+            salad: { quantity: 0, price: 10.99 },
+            ice:{ quantity: 0, price: 3.99 },   
+            juice: { quantity: 0, price: 5.99 },
+            cake:{ quantity: 0, price: 8.99 },
+
         };
         
         // Initialize quantity displays

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>My Favorites</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <style>
+            body {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                min-height: 100vh;
+            }
+
+            .favorites-container {
+                max-width: 1200px;
+                margin: 30px auto;
+                padding: 20px;
+            }
+
+            .favorites-header {
+                background: white;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                margin-bottom: 30px;
+            }
+
+            .favorite-card {
+                background: white;
+                border-radius: 10px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .favorite-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            }
+
+            .favorite-img {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+
+            .empty-favorites {
+                text-align: center;
+                padding: 50px 20px;
+            }
+
+            .empty-favorites-icon {
+                font-size: 5rem;
+                color: #dee2e6;
+                margin-bottom: 20px;
+            }
+
+            .btn-remove-favorite {
+                background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+                border: none;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .btn-remove-favorite:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            }
+
+            .btn-add-to-cart {
+                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+                border: none;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .btn-add-to-cart:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+            }
+
+            .favorite-info {
+                flex: 1;
+            }
+
+            .item-price {
+                color: #ff6b6b;
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+
+            .item-description {
+                color: #666;
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+
+            @media (max-width: 768px) {
+                .favorite-img {
+                    width: 100%;
+                    height: 200px;
+                    margin-bottom: 15px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <div class="container-fluid text-white p-3" style="background-color: rgb(13, 13, 13);">
+                    <div><a href="home.html"><img src="" alt="logo" height="50px" width="50px"></a></div>
+                    <h1 class="text-center">My Favorite Items</h1>
+                    <div class="d-flex justify-content-center align-items-center" id="navbar_home">
+                        <div><a href="home.html" class="ms-3 bi bi-house">Home</a></div>
+                        <div><a href="cart.html" class="ms-3 bi bi-cart">Cart</a></div>
+                        <div><a href="favorite.html" class="ms-3 bi bi-heart">Favorites</a></div>
+                        <div><a href="" class="ms-3 bi bi-person-plus">Contact</a></div>
+                    </div>
+                    <div class="d-flex justify-content-end align-items-end" id="login_register">
+                        <a href="login.html" class="ms-3">Login</a>
+                        <a href="register.html" class="ms-3">Register</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="favorites-container">
+                <div class="favorites-header">
+                    <h2 class="mb-0"><i class="bi bi-heart-fill text-danger"></i> My Favorite Items</h2>
+                    <p class="text-muted mb-0 mt-2">Items you've marked as favorites will appear here</p>
+                </div>
+
+                <!-- Favorites Container -->
+                <div id="favorites-container">
+                    <!-- Favorite items will be loaded here -->
+                </div>
+
+                <!-- Empty Favorites Message -->
+                <div id="empty-favorites-message" class="empty-favorites" style="display: none;">
+                    <div class="empty-favorites-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <h3>No favorites yet</h3>
+                    <p class="text-muted">Start adding your favorite items from the menu!</p>
+                    <a href="home.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-arrow-left"></i> Browse Menu
+                    </a>
+                </div>
+
+                <!-- Clear All Button -->
+                <div class="text-end mt-4" id="clear-all-container" style="display: none;">
+                    <button onclick="clearAllFavorites()" class="btn btn-outline-danger">
+                        <i class="bi bi-trash"></i> Clear All Favorites
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Footer content -->
+        </footer>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+        <script>
+            // Sample food data (should match your home page data)
+            const foodItems = {
+                burger: {
+                    id: 'burger',
+                    name: 'Idli',
+                    price: 60,
+                    originalPrice: 90,
+                    image: 'img/dosa1.jpg',
+                    description: 'Light and easy to digest, Good for gut health (fermented), Low fat, good for weight control, Safe for all ages'
+                },
+                pizza: {
+                    id: 'pizza',
+                    name: 'Pepperoni Pizza',
+                    price: 16.50,
+                    originalPrice: 19.99,
+                    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591',
+                    description: 'Classic pizza with mozzarella cheese, tomato sauce, and generous portions of pepperoni.'
+                },
+                salad: {
+                    id: 'salad',
+                    name: 'Caesar Salad',
+                    price: 10.99,
+                    originalPrice: 10.99,
+                    image: 'https://images.unsplash.com/photo-1559715745-e1b33a271c8f',
+                    description: 'Fresh romaine lettuce with Caesar dressing, croutons, parmesan cheese, and grilled chicken.'
+                },
+                ice: {
+                    id: 'ice',
+                    name: 'Ice Cream',
+                    price: 3.99,
+                    originalPrice: 4.99,
+                    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187',
+                    description: 'Vanilla ice cream with chocolate sauce and sprinkles.'
+                },
+                juice: {
+                    id: 'juice',
+                    name: 'Fresh Juice',
+                    price: 5.99,
+                    originalPrice: 6.99,
+                    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187',
+                    description: 'Freshly squeezed orange juice with pulp.'
+                },
+                cake: {
+                    id: 'cake',
+                    name: 'Chocolate Cake',
+                    price: 8.99,
+                    originalPrice: 10.99,
+                    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187',
+                    description: 'Rich chocolate cake with chocolate frosting and sprinkles.'
+                }
+            };
+
+            // Load favorites from localStorage
+            function loadFavorites() {
+                const savedFavorites = localStorage.getItem('foodFavorites');
+                return savedFavorites ? JSON.parse(savedFavorites) : [];
+            }
+
+            // Remove from favorites
+            function removeFromFavorite(itemId) {
+                if (confirm('Remove this item from favorites?')) {
+                    const favorites = loadFavorites();
+                    const updatedFavorites = favorites.filter(id => id !== itemId);
+                    localStorage.setItem('foodFavorites', JSON.stringify(updatedFavorites));
+                    
+                    // Refresh the display
+                    renderFavorites();
+                    updateFavoriteCount();
+                    
+                    // Show notification
+                    showNotification(foodItems[itemId].name + ' removed from favorites', 'danger');
+                }
+            }
+
+            // Add to cart from favorites
+            function addToCartFromFavorite(itemId) {
+                const item = foodItems[itemId];
+                if (!item) return;
+                
+                // Load current cart
+                const savedCart = localStorage.getItem('foodCart');
+                const cart = savedCart ? JSON.parse(savedCart) : {};
+                
+                // Add or update item in cart
+                if (cart[itemId]) {
+                    cart[itemId].quantity += 1;
+                } else {
+                    cart[itemId] = {
+                        quantity: 1,
+                        price: item.price,
+                        name: item.name,
+                        image: item.image
+                    };
+                }
+                
+                // Save cart
+                localStorage.setItem('foodCart', JSON.stringify(cart));
+                
+                // Show success message
+                showNotification(item.name + ' added to cart!', 'success');
+                
+                // Optionally update cart count
+                updateCartCount();
+            }
+
+            // Render favorites
+            function renderFavorites() {
+                const favorites = loadFavorites();
+                const container = document.getElementById('favorites-container');
+                const emptyMessage = document.getElementById('empty-favorites-message');
+                const clearAllContainer = document.getElementById('clear-all-container');
+                
+                if (favorites.length === 0) {
+                    container.innerHTML = '';
+                    emptyMessage.style.display = 'block';
+                    clearAllContainer.style.display = 'none';
+                    return;
+                }
+                
+                emptyMessage.style.display = 'none';
+                clearAllContainer.style.display = 'block';
+                
+                let favoritesHTML = '';
+                
+                favorites.forEach(itemId => {
+                    const item = foodItems[itemId];
+                    if (!item) return;
+                    
+                    const discount = item.originalPrice > item.price ? 
+                        Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
+                    
+                    favoritesHTML += `
+                        <div class="favorite-card">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <img src="${item.image}" class="favorite-img" alt="${item.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Food+Image'">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="favorite-info">
+                                        <h4 class="mb-2">${item.name}</h4>
+                                        <p class="item-description mb-3">${item.description}</p>
+                                        <div class="d-flex align-items-center">
+                                            <span class="item-price me-3">$${item.price.toFixed(2)}</span>
+                                            ${discount > 0 ? `
+                                                <span class="text-muted text-decoration-line-through me-2">$${item.originalPrice.toFixed(2)}</span>
+                                                <span class="badge bg-success">${discount}% OFF</span>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex flex-column gap-2">
+                                        <button onclick="addToCartFromFavorite('${itemId}')" class="btn-add-to-cart">
+                                            <i class="bi bi-cart-plus"></i> Add to Cart
+                                        </button>
+                                        <button onclick="removeFromFavorite('${itemId}')" class="btn-remove-favorite">
+                                            <i class="bi bi-heartbreak"></i> Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = favoritesHTML;
+            }
+
+            // Clear all favorites
+            function clearAllFavorites() {
+                if (confirm('Are you sure you want to remove all items from favorites?')) {
+                    localStorage.removeItem('foodFavorites');
+                    renderFavorites();
+                    updateFavoriteCount();
+                    showNotification('All favorites cleared', 'info');
+                }
+            }
+
+            // Show notification
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `alert alert-${type} position-fixed top-0 end-0 m-3`;
+                notification.style.zIndex = '9999';
+                notification.style.minWidth = '300px';
+                notification.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <i class="bi ${type === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill'} me-2"></i>
+                        <div>${message}</div>
+                        <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 3000);
+            }
+
+            // Update favorite count in navbar
+            function updateFavoriteCount() {
+                const favorites = loadFavorites();
+                const favoriteCount = favorites.length;
+                
+                let favoriteBadge = document.getElementById('favorite-count-badge');
+                if (!favoriteBadge) {
+                    favoriteBadge = document.createElement('span');
+                    favoriteBadge.id = 'favorite-count-badge';
+                    favoriteBadge.className = 'badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle';
+                    favoriteBadge.style.fontSize = '0.7rem';
+                    
+                    const favoriteLink = document.querySelector('a[href="favorite.html"]');
+                    if (favoriteLink) {
+                        favoriteLink.style.position = 'relative';
+                        favoriteLink.appendChild(favoriteBadge);
+                    }
+                }
+                
+                favoriteBadge.textContent = favoriteCount;
+                if (favoriteCount === 0) {
+                    favoriteBadge.style.display = 'none';
+                } else {
+                    favoriteBadge.style.display = 'inline-block';
+                }
+            }
+
+            // Update cart count in navbar
+            function updateCartCount() {
+                const savedCart = localStorage.getItem('foodCart');
+                const cart = savedCart ? JSON.parse(savedCart) : {};
+                const totalItems = Object.values(cart).reduce((sum, item) => sum + (item.quantity || 0), 0);
+                
+                let cartBadge = document.getElementById('cart-count-badge');
+                if (!cartBadge) {
+                    cartBadge = document.createElement('span');
+                    cartBadge.id = 'cart-count-badge';
+                    cartBadge.className = 'badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle';
+                    cartBadge.style.fontSize = '0.7rem';
+                    
+                    const cartLink = document.querySelector('a[href="cart.html"]');
+                    if (cartLink) {
+                        cartLink.style.position = 'relative';
+                        cartLink.appendChild(cartBadge);
+                    }
+                }
+                
+                cartBadge.textContent = totalItems;
+                if (totalItems === 0) {
+                    cartBadge.style.display = 'none';
+                } else {
+                    cartBadge.style.display = 'inline-block';
+                }
+            }
+
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                renderFavorites();
+                updateFavoriteCount();
+                updateCartCount();
+            });
+        </script>
+    </body>
+</html>

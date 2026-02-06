@@ -318,6 +318,7 @@
             <div class="d-flex justify-content-center align-items-center" id="navbar_home">
                 <div><a href="home.html" class="ms-3 bi bi-house">Home</a></div>
                 <div><a href="cart.html" class="ms-3 bi bi-info-circle">cart</a></div>
+                 <div><a href="favorite.html" class="ms-3 bi bi-heart">Favorites</a></div>
                 <div><a href="" class="ms-3 bi bi-person-plus">contact</a></div>
             </div>
             <!-- login register -->
@@ -410,7 +411,7 @@
                             </div>
                             
                             <button class="add-to-cart-btn " data-item="burger">
-                                <i class="bi bi-cart-plus" style="background-color: #c90014;"></i> Add to Cart
+                                <i class="bi bi-cart-plus" ></i> Add to Cart
                             </button>
                     </div>
                         </div>
@@ -427,8 +428,8 @@
                         <p class="food-description">Classic pizza with mozzarella cheese, tomato sauce, and generous portions of pepperoni.</p>
                         
                         <div class="price-container">
-                            <span class="current-price">$16.50</span>
-                            <span class="original-price">$19.99</span>
+                            <span class="current-price">Rs:90</span>
+                            <span class="original-price">Rs:120</span>
                             <span class="discount-badge">17% OFF</span>
                         </div>
                         
@@ -724,7 +725,7 @@
                             </div>
                             
                             <button class="add-to-cart-btn " data-item="burger">
-                                <i class="bi bi-cart-plus" style="background-color: #c90014;"></i> Add to Cart
+                                <i class="bi bi-cart-plus"></i> Add to Cart
                             </button>
                     </div>
                         </div>
@@ -996,144 +997,340 @@
             
         </div>
         </div>
-        
-        <footer>
-            <!-- place footer here -->
-        </footer>
         <!-- Bootstrap JavaScript Libraries -->
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+    // Cart state
+    const cart = {
+        burger: { quantity: 0, price: 60, name: "Idli", image: "img/dosa1.jpg" },
+        pizza: { quantity: 0, price: 90, name: "Pepperoni Pizza", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+        salad: { quantity: 0, price: 10.99, name: "Caesar Salad", image: "https://images.unsplash.com/photo-1559715745-e1b33a271c8f" },
+        ice: { quantity: 0, price: 3.99, name: "Ice Cream", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187" },
+        juice: { quantity: 0, price: 5.99, name: "Fresh Juice", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187" },
+        cake: { quantity: 0, price: 8.99, name: "Chocolate Cake", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187" }
+    };
     
-    <script>
-        // Cart state
-        const cart = {
-
-            
-            burger: { quantity: 0, price: 12.99 },
-            pizza: { quantity: 0, price: 16.50 },
-            salad: { quantity: 0, price: 10.99 },
-            ice:{ quantity: 0, price: 3.99 },   
-            juice: { quantity: 0, price: 5.99 },
-            cake:{ quantity: 0, price: 8.99 },
-
-        };
-        
-        // Initialize quantity displays
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartSummary();
-        });
-        
-        // Quantity controls
-        document.querySelectorAll('.increase-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const target = this.getAttribute('data-target');
-                const quantityElement = document.getElementById(`${target}-quantity`);
-                let currentQuantity = parseInt(quantityElement.textContent);
-                quantityElement.textContent = currentQuantity + 1;
-            });
-        });
-        
-        document.querySelectorAll('.decrease-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const target = this.getAttribute('data-target');
-                const quantityElement = document.getElementById(`${target}-quantity`);
-                let currentQuantity = parseInt(quantityElement.textContent);
-                if (currentQuantity > 1) {
-                    quantityElement.textContent = currentQuantity - 1;
+    // Load cart from localStorage on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedCart = localStorage.getItem('foodCart');
+        if (savedCart) {
+            const parsedCart = JSON.parse(savedCart);
+            Object.keys(parsedCart).forEach(item => {
+                if (cart[item]) {
+                    cart[item].quantity = parsedCart[item].quantity || 0;
                 }
             });
+        }
+        updateCartCount();
+    });
+    
+    // Quantity controls
+    document.querySelectorAll('.increase-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            const quantityElement = document.getElementById(`${target}-quantity`);
+            let currentQuantity = parseInt(quantityElement.textContent);
+            quantityElement.textContent = currentQuantity + 1;
         });
-        
-        // Favorite toggle
-        document.querySelectorAll('.favorite-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const icon = this.querySelector('i');
-                this.classList.toggle('active');
-                
-                if (icon.classList.contains('bi-heart')) {
-                    icon.classList.remove('bi-heart');
-                    icon.classList.add('bi-heart-fill');
-                } else {
-                    icon.classList.remove('bi-heart-fill');
-                    icon.classList.add('bi-heart');
-                }
-            });
-        });
-        
-        // Add to cart functionality
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const item = this.getAttribute('data-item');
-                const quantityElement = document.getElementById(`${item}-quantity`);
-                const quantity = parseInt(quantityElement.textContent);
-                
-                // Add to cart
-                cart[item].quantity += quantity;
-                
-                // Show feedback
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="bi bi-check-circle"></i> Added!';
-                this.style.backgroundColor = 'var(--success-color)';
-                
-                // Reset button after 1.5 seconds
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.backgroundColor = '';
-                }, 1500);
-                
-                // Update cart summary
-                updateCartSummary();
-                
-                // Reset quantity to 1
-                quantityElement.textContent = '1';
-            });
-        });
-        
-        // Clear cart
-        document.getElementById('clear-cart').addEventListener('click', function() {
-            // Reset all quantities to 0
-            for (const item in cart) {
-                cart[item].quantity = 0;
+    });
+    
+    document.querySelectorAll('.decrease-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            const quantityElement = document.getElementById(`${target}-quantity`);
+            let currentQuantity = parseInt(quantityElement.textContent);
+            if (currentQuantity > 1) {
+                quantityElement.textContent = currentQuantity - 1;
             }
+        });
+    });
+    
+    // Favorite toggle
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            this.classList.toggle('active');
             
-            // Update display
-            updateCartSummary();
+            if (icon.classList.contains('bi-heart')) {
+                icon.classList.remove('bi-heart');
+                icon.classList.add('bi-heart-fill');
+            } else {
+                icon.classList.remove('bi-heart-fill');
+                icon.classList.add('bi-heart');
+            }
+        });
+    });
+    
+    // Add to cart functionality - UPDATED TO SAVE TO LOCALSTORAGE
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const item = this.getAttribute('data-item');
+            const quantityElement = document.getElementById(`${item}-quantity`);
+            const quantity = parseInt(quantityElement.textContent);
+            
+            // Add to cart
+            cart[item].quantity += quantity;
+            
+            // Save to localStorage
+            saveCartToStorage();
             
             // Show feedback
             const originalText = this.innerHTML;
-            this.innerHTML = '<i class="bi bi-check"></i> Cart cleared!';
-            this.classList.remove('btn-outline-primary');
-            this.classList.add('btn-outline-success');
+            this.innerHTML = '<i class="bi bi-check-circle"></i> Added!';
+            this.style.backgroundColor = 'var(--success-color)';
             
+            // Reset button after 1.5 seconds
             setTimeout(() => {
                 this.innerHTML = originalText;
-                this.classList.remove('btn-outline-success');
-                this.classList.add('btn-outline-primary');
+                this.style.backgroundColor = '';
             }, 1500);
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Reset quantity to 1
+            quantityElement.textContent = '1';
+            
+            // Optional: Show cart notification
+            showCartNotification(cart[item].name, quantity);
+        });
+    });
+    
+    // Function to save cart to localStorage
+    function saveCartToStorage() {
+        // Create a simplified cart object for storage
+        const cartForStorage = {};
+        Object.keys(cart).forEach(item => {
+            cartForStorage[item] = {
+                quantity: cart[item].quantity,
+                price: cart[item].price,
+                name: cart[item].name,
+                image: cart[item].image
+            };
+        });
+        localStorage.setItem('foodCart', JSON.stringify(cartForStorage));
+        console.log('Cart saved:', cartForStorage);
+    }
+    
+    // Function to update cart count in navbar
+    function updateCartCount() {
+        let totalItems = 0;
+        Object.keys(cart).forEach(item => {
+            totalItems += cart[item].quantity;
         });
         
-        // Update cart summary
-        function updateCartSummary() {
-            let totalItems = 0;
-            let totalPrice = 0;
+        // Update or create cart count badge
+        let cartCountBadge = document.getElementById('cart-count-badge');
+        if (!cartCountBadge) {
+            cartCountBadge = document.createElement('span');
+            cartCountBadge.id = 'cart-count-badge';
+            cartCountBadge.className = 'badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle';
+            cartCountBadge.style.fontSize = '0.7rem';
             
-            for (const item in cart) {
-                totalItems += cart[item].quantity;
-                totalPrice += cart[item].quantity * cart[item].price;
-            }
-            
-            document.getElementById('cart-count').textContent = totalItems;
-            document.getElementById('cart-total').textContent = totalPrice.toFixed(2);
-            
-            // Hide cart summary if empty
-            const cartSummary = document.getElementById('cart-summary');
-            if (totalItems === 0) {
-                cartSummary.style.display = 'none';
-            } else {
-                cartSummary.style.display = 'flex';
+            const cartLink = document.querySelector('a[href="cart.html"]');
+            if (cartLink) {
+                cartLink.style.position = 'relative';
+                cartLink.appendChild(cartCountBadge);
             }
         }
-    </script>
+        
+        cartCountBadge.textContent = totalItems;
+        if (totalItems === 0) {
+            cartCountBadge.style.display = 'none';
+        } else {
+            cartCountBadge.style.display = 'inline-block';
+        }
+    }
+    
+    // Function to show cart notification
+    function showCartNotification(itemName, quantity) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = 'alert alert-success position-fixed top-0 end-0 m-3';
+        notification.style.zIndex = '9999';
+        notification.style.minWidth = '300px';
+        notification.innerHTML = `
+            <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <div>
+                    <strong>${quantity} × ${itemName}</strong> added to cart!
+                    <br><small><a href="cart.html" class="text-decoration-none">View Cart</a></small>
+                </div>
+                <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 3000);
+    }
+    
+    // Clear cart function (optional - for testing)
+    function clearCart() {
+        Object.keys(cart).forEach(item => {
+            cart[item].quantity = 0;
+        });
+        localStorage.removeItem('foodCart');
+        updateCartCount();
+        alert('Cart cleared!');
+    }
+    
+    // For testing: add this button somewhere in your HTML
+    // <button onclick="clearCart()" class="btn btn-sm btn-outline-danger">Clear Cart (Test)</button>
+
+
+    // Favorite system
+const favorites = new Set();
+
+// Load favorites from localStorage
+function loadFavorites() {
+    const savedFavorites = localStorage.getItem('foodFavorites');
+    if (savedFavorites) {
+        const favoriteArray = JSON.parse(savedFavorites);
+        favoriteArray.forEach(item => favorites.add(item));
+        
+        // Update favorite buttons
+        updateFavoriteButtons();
+    }
+}
+
+// Save favorites to localStorage
+function saveFavorites() {
+    localStorage.setItem('foodFavorites', JSON.stringify(Array.from(favorites)));
+}
+
+// Update favorite button states
+function updateFavoriteButtons() {
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        const target = button.getAttribute('data-target');
+        const icon = button.querySelector('i');
+        
+        if (favorites.has(target)) {
+            button.classList.add('active');
+            icon.classList.remove('bi-heart');
+            icon.classList.add('bi-heart-fill');
+        } else {
+            button.classList.remove('active');
+            icon.classList.remove('bi-heart-fill');
+            icon.classList.add('bi-heart');
+        }
+    });
+}
+
+// Toggle favorite
+function toggleFavorite(itemId) {
+    if (favorites.has(itemId)) {
+        favorites.delete(itemId);
+    } else {
+        favorites.add(itemId);
+    }
+    saveFavorites();
+    updateFavoriteButtons();
+    updateFavoriteCount();
+    
+    // Show notification
+    showFavoriteNotification(itemId, !favorites.has(itemId));
+}
+
+// Update favorite count in navbar
+function updateFavoriteCount() {
+    const favoriteCount = favorites.size;
+    
+    // Update or create favorite count badge
+    let favoriteBadge = document.getElementById('favorite-count-badge');
+    if (!favoriteBadge) {
+        favoriteBadge = document.createElement('span');
+        favoriteBadge.id = 'favorite-count-badge';
+        favoriteBadge.className = 'badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle';
+        favoriteBadge.style.fontSize = '0.7rem';
+        
+        const favoriteLink = document.querySelector('a[href="favorite.html"]');
+        if (favoriteLink) {
+            favoriteLink.style.position = 'relative';
+            favoriteLink.appendChild(favoriteBadge);
+        }
+    }
+    
+    favoriteBadge.textContent = favoriteCount;
+    if (favoriteCount === 0) {
+        favoriteBadge.style.display = 'none';
+    } else {
+        favoriteBadge.style.display = 'inline-block';
+    }
+}
+
+// Show favorite notification
+function showFavoriteNotification(itemId, isAdded) {
+    const itemName = getItemName(itemId);
+    const notification = document.createElement('div');
+    notification.className = 'alert alert-info position-fixed top-0 end-0 m-3';
+    notification.style.zIndex = '9998';
+    notification.style.minWidth = '300px';
+    notification.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="bi ${isAdded ? 'bi-heart-fill' : 'bi-heart'} me-2"></i>
+            <div>
+                <strong>${itemName}</strong> ${isAdded ? 'added to' : 'removed from'} favorites!
+                <br><small><a href="favorite.html" class="text-decoration-none">View Favorites</a></small>
+            </div>
+            <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 3 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 3000);
+}
+
+// Get item name by ID
+function getItemName(itemId) {
+    const itemNames = {
+        burger: 'Idli',
+        pizza: 'Pepperoni Pizza',
+        salad: 'Caesar Salad',
+        ice: 'Ice Cream',
+        juice: 'Fresh Juice',
+        cake: 'Chocolate Cake'
+    };
+    return itemNames[itemId] || itemId;
+}
+
+// Add click event to favorite buttons
+document.querySelectorAll('.favorite-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const target = this.getAttribute('data-target');
+        toggleFavorite(target);
+    });
+});
+
+// Load favorites on page load
+document.addEventListener('DOMContentLoaded', function() {
+    loadFavorites();
+    updateFavoriteCount();
+});
+
+// Function to clear favorites (for testing)
+function clearFavorites() {
+    if (confirm('Clear all favorites?')) {
+        favorites.clear();
+        saveFavorites();
+        updateFavoriteButtons();
+        updateFavoriteCount();
+        alert('Favorites cleared!');
+    }
+}
+</script>
 
 
 

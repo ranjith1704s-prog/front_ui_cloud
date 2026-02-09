@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Order Confirmation</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <style>
+            body {
+                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                min-height: 100vh;
+            }
+
+            .confirmation-container {
+                max-width: 800px;
+                margin: 50px auto;
+                padding: 20px;
+            }
+
+            .confirmation-card {
+                background: white;
+                border-radius: 20px;
+                padding: 40px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .confirmation-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 5px;
+                background: linear-gradient(90deg, #28a745, #20c997);
+            }
+
+            .success-icon {
+                font-size: 5rem;
+                color: #28a745;
+                margin-bottom: 20px;
+                animation: successPulse 2s infinite;
+            }
+
+            @keyframes successPulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+
+            .order-number {
+                background: linear-gradient(135deg, #28a745, #20c997);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 50px;
+                display: inline-block;
+                font-weight: bold;
+                font-size: 1.2rem;
+                margin: 20px 0;
+            }
+
+            .order-details {
+                background: #f8f9fa;
+                border-radius: 15px;
+                padding: 25px;
+                margin: 30px 0;
+                text-align: left;
+            }
+
+            .detail-item {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            .detail-item:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+
+            .order-timeline {
+                display: flex;
+                justify-content: space-between;
+                margin: 30px 0;
+                position: relative;
+            }
+
+            .order-timeline::before {
+                content: '';
+                position: absolute;
+                top: 15px;
+                left: 10%;
+                right: 10%;
+                height: 3px;
+                background: #dee2e6;
+                z-index: 1;
+            }
+
+            .timeline-step {
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+
+            .timeline-icon {
+                width: 35px;
+                height: 35px;
+                background: #28a745;
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 10px;
+            }
+
+            .timeline-step.active .timeline-icon {
+                background: #28a745;
+                animation: bounce 1s;
+            }
+
+            .timeline-step.completed .timeline-icon {
+                background: #20c997;
+            }
+
+            .timeline-step.pending .timeline-icon {
+                background: #6c757d;
+            }
+
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+
+            .btn-print {
+                background: linear-gradient(135deg, #007bff, #0056b3);
+                border: none;
+                color: white;
+                padding: 12px 25px;
+                border-radius: 10px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
+
+            .btn-print:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            }
+
+            .btn-home {
+                background: linear-gradient(135deg, #6c757d, #495057);
+                border: none;
+                color: white;
+                padding: 12px 25px;
+                border-radius: 10px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
+
+            .btn-home:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+            }
+
+            .order-items {
+                max-height: 300px;
+                overflow-y: auto;
+                margin: 20px 0;
+                padding: 15px;
+                background: white;
+                border-radius: 10px;
+                border: 1px solid #dee2e6;
+            }
+
+            .order-item {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .order-item:last-child {
+                border-bottom: none;
+            }
+
+            .item-image {
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-right: 15px;
+            }
+
+            .shipping-info {
+                background: #f8f9fa;
+                border-radius: 10px;
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .estimated-delivery {
+                background: linear-gradient(135deg, #ffc107, #fd7e14);
+                color: white;
+                padding: 15px;
+                border-radius: 10px;
+                margin: 20px 0;
+                text-align: center;
+            }
+
+            .whatsapp-share {
+                background: linear-gradient(135deg, #25D366, #128C7E);
+                color: white;
+                border: none;
+                padding: 12px 25px;
+                border-radius: 10px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
+
+            .whatsapp-share:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <div class="container-fluid text-white p-3" style="background-color: rgb(13, 13, 13);">
+                    <h1 class="text-center">Order Confirmation</h1>
+                    <div class="d-flex justify-content-center align-items-center" id="navbar_home">
+                        <div><a href="home.html" class="ms-3 bi bi-house">Home</a></div>
+                        <div><a href="cart.html" class="ms-3 bi bi-cart">Cart</a></div>
+                        <div><a href="favorite.html" class="ms-3 bi bi-heart">Favorites</a></div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="confirmation-container">
+                <div class="confirmation-card">
+                    <!-- Success Icon -->
+                    <div class="success-icon">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+                    
+                    <!-- Confirmation Title -->
+                    <h1 class="mb-3">Order Confirmed!</h1>
+                    <p class="text-muted mb-4">Thank you for your order. We've received it and will start preparing it right away.</p>
+                    
+                    <!-- Order Number -->
+                    <div class="order-number" id="order-number">
+                        Loading...
+                    </div>
+                    
+                    <!-- Order Timeline -->
+                    <div class="order-timeline">
+                        <div class="timeline-step completed">
+                            <div class="timeline-icon">
+                                <i class="bi bi-cart-check"></i>
+                            </div>
+                            <div>Order Placed</div>
+                        </div>
+                        <div class="timeline-step active">
+                            <div class="timeline-icon">
+                                <i class="bi bi-clock"></i>
+                            </div>
+                            <div>Preparing</div>
+                        </div>
+                        <div class="timeline-step pending">
+                            <div class="timeline-icon">
+                                <i class="bi bi-truck"></i>
+                            </div>
+                            <div>On the Way</div>
+                        </div>
+                        <div class="timeline-step pending">
+                            <div class="timeline-icon">
+                                <i class="bi bi-house-door"></i>
+                            </div>
+                            <div>Delivered</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Details -->
+                    <div class="order-details">
+                        <h4 class="mb-4">Order Details</h4>
+                        
+                        <div class="detail-item">
+                            <span>Order Date</span>
+                            <span id="order-date">Loading...</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span>Payment Method</span>
+                            <span id="payment-method">Loading...</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span>Order Status</span>
+                            <span class="badge bg-success" id="order-status">Processing</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span>Subtotal</span>
+                            <span id="order-subtotal">$0.00</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span>Shipping</span>
+                            <span id="order-shipping">$0.00</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span>Tax</span>
+                            <span id="order-tax">$0.00</span>
+                        </div>
+                        
+                        <div class="detail-item" style="font-weight: bold; font-size: 1.1rem;">
+                            <span>Total Amount</span>
+                            <span id="order-total">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Estimated Delivery -->
+                    <div class="estimated-delivery">
+                        <h5><i class="bi bi-clock"></i> Estimated Delivery Time</h5>
+                        <h3 id="delivery-time">30-45 minutes</h3>
+                        <p class="mb-0">Your order will be delivered shortly</p>
+                    </div>
+                    
+                    <!-- Order Items -->
+                    <h4 class="mt-4 mb-3">Order Items</h4>
+                    <div class="order-items" id="order-items-container">
+                        <!-- Order items will be loaded here -->
+                    </div>
+                    
+                    <!-- Shipping Information -->
+                    <div class="shipping-info">
+                        <h5><i class="bi bi-geo-alt"></i> Delivery Address</h5>
+                        <p id="delivery-address">Loading...</p>
+                        <p><strong>Contact:</strong> <span id="customer-phone">Loading...</span></p>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="d-flex flex-wrap justify-content-center gap-3 mt-5">
+                        <button onclick="printOrder()" class="btn-print">
+                            <i class="bi bi-printer"></i> Print Receipt
+                        </button>
+                        
+                        <button onclick="shareOnWhatsApp()" class="whatsapp-share">
+                            <i class="bi bi-whatsapp"></i> Share on WhatsApp
+                        </button>
+                        
+                        <button onclick="trackOrder()" class="btn btn-info">
+                            <i class="bi bi-geo-alt"></i> Track Order
+                        </button>
+                        
+                        <a href="home.html" class="btn-home">
+                            <i class="bi bi-house"></i> Back to Home
+                        </a>
+                    </div>
+                    
+                    <!-- Additional Info -->
+                    <div class="mt-4 text-muted">
+                        <p class="small mb-0">
+                            <i class="bi bi-info-circle"></i> 
+                            You'll receive an email confirmation shortly. For any questions, contact support@foodapp.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Footer content -->
+        </footer>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+        <script>
+            // Sample order data (in real app, this would come from server/database)
+            const sampleOrderData = {
+                orderNumber: 'ORD' + Math.floor(Math.random() * 1000000),
+                date: new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }),
+                paymentMethod: 'Credit Card',
+                subtotal: '0.00',
+                shipping: '0.00',
+                tax: '0.00',
+                total: '0.00',
+                items: [],
+                address: '123 Main Street, City, State 12345',
+                phone: '+1 (234) 567-8900'
+            };
+
+            // Load order data from localStorage
+            document.addEventListener('DOMContentLoaded', function() {
+                // Try to get order confirmation from localStorage
+                const orderConfirmation = localStorage.getItem('orderConfirmation');
+                const checkoutData = localStorage.getItem('checkoutData');
+                
+                if (orderConfirmation) {
+                    loadOrderConfirmation(JSON.parse(orderConfirmation));
+                } else if (checkoutData) {
+                    // If no confirmation but has checkout data, create one
+                    createConfirmationFromCheckout(JSON.parse(checkoutData));
+                } else {
+                    // No order data found, redirect to home
+                    showNoOrderMessage();
+                }
+                
+                // Start timeline animation
+                startTimelineAnimation();
+            });
+
+            // Load order confirmation data
+            function loadOrderConfirmation(data) {
+                // Update order details
+                document.getElementById('order-number').textContent = 'ORDER #' + data.orderNumber;
+                document.getElementById('order-date').textContent = data.date;
+                document.getElementById('payment-method').textContent = data.paymentMethod || 'Credit Card';
+                document.getElementById('order-subtotal').textContent = '$' + parseFloat(data.subtotal || 0).toFixed(2);
+                document.getElementById('order-shipping').textContent = '$' + parseFloat(data.shipping || 0).toFixed(2);
+                document.getElementById('order-tax').textContent = '$' + parseFloat(data.tax || 0).toFixed(2);
+                document.getElementById('order-total').textContent = '$' + parseFloat(data.total || 0).toFixed(2);
+                document.getElementById('delivery-address').textContent = data.address || sampleOrderData.address;
+                document.getElementById('customer-phone').textContent = data.phone || sampleOrderData.phone;
+                
+                // Generate random delivery time (25-45 minutes)
+                const deliveryMinutes = 25 + Math.floor(Math.random() * 21);
+                document.getElementById('delivery-time').textContent = deliveryMinutes + ' minutes';
+                
+                // Load order items
+                loadOrderItems(data.items || []);
+            }
+
+            // Create confirmation from checkout data
+            function createConfirmationFromCheckout(checkoutData) {
+                const orderData = {
+                    orderNumber: 'ORD' + Math.floor(Math.random() * 1000000),
+                    date: new Date().toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }),
+                    paymentMethod: 'Credit Card',
+                    subtotal: checkoutData.subtotal || '0.00',
+                    shipping: checkoutData.shipping || '0.00',
+                    tax: checkoutData.tax || '0.00',
+                    total: checkoutData.total || '0.00',
+                    items: checkoutData.cart || [],
+                    address: '123 Main Street, City, State 12345',
+                    phone: '+1 (234) 567-8900'
+                };
+                
+                // Save to localStorage for persistence
+                localStorage.setItem('orderConfirmation', JSON.stringify(orderData));
+                
+                // Load the data
+                loadOrderConfirmation(orderData);
+                
+                // Clear cart since order is placed
+                localStorage.removeItem('foodCart');
+                localStorage.removeItem('checkoutData');
+            }
+
+            // Load order items
+            function loadOrderItems(items) {
+                const container = document.getElementById('order-items-container');
+                
+                if (!items || items.length === 0) {
+                    container.innerHTML = '<p class="text-center text-muted">No items found</p>';
+                    return;
+                }
+                
+                let itemsHTML = '';
+                
+                items.forEach((item, index) => {
+                    const itemTotal = (item.price * item.quantity).toFixed(2);
+                    
+                    itemsHTML += `
+                        <div class="order-item">
+                            <img src="${item.image || 'https://via.placeholder.com/60x60?text=Food'}" 
+                                 class="item-image" 
+                                 alt="${item.name}"
+                                 onerror="this.src='https://via.placeholder.com/60x60?text=Food'">
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">${item.name}</div>
+                                <div class="text-muted" style="font-size: 0.9rem;">
+                                    Quantity: ${item.quantity} × $${item.price.toFixed(2)}
+                                </div>
+                            </div>
+                            <div style="font-weight: 600; color: #28a745;">
+                                $${itemTotal}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = itemsHTML;
+            }
+
+            // Show message when no order data
+            function showNoOrderMessage() {
+                const card = document.querySelector('.confirmation-card');
+                card.innerHTML = `
+                    <div class="text-center py-5">
+                        <div class="mb-4" style="font-size: 4rem; color: #6c757d;">
+                            <i class="bi bi-exclamation-circle"></i>
+                        </div>
+                        <h3>No Order Found</h3>
+                        <p class="text-muted mb-4">We couldn't find any recent order information.</p>
+                        <a href="home.html" class="btn btn-primary">
+                            <i class="bi bi-house"></i> Back to Home
+                        </a>
+                    </div>
+                `;
+            }
+
+            // Start timeline animation
+            function startTimelineAnimation() {
+                const steps = document.querySelectorAll('.timeline-step');
+                let currentStep = 1;
+                
+                // Animate steps sequentially
+                function animateNextStep() {
+                    if (currentStep < steps.length) {
+                        steps[currentStep].classList.remove('pending');
+                        steps[currentStep].classList.add('active');
+                        currentStep++;
+                        setTimeout(animateNextStep, 2000);
+                    }
+                }
+                
+                // Start animation after 1 second
+                setTimeout(animateNextStep, 1000);
+            }
+
+            // Print order receipt
+            function printOrder() {
+                const printContent = `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Order Receipt</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; padding: 20px; }
+                            .header { text-align: center; margin-bottom: 30px; }
+                            .order-number { font-size: 24px; font-weight: bold; color: #28a745; }
+                            .details { margin: 20px 0; }
+                            .detail-item { display: flex; justify-content: space-between; margin-bottom: 10px; }
+                            .items { margin: 20px 0; }
+                            .item { display: flex; justify-content: space-between; margin-bottom: 10px; }
+                            .total { font-size: 18px; font-weight: bold; border-top: 2px solid #000; padding-top: 10px; }
+                            .thank-you { text-align: center; margin-top: 30px; color: #666; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="header">
+                            <h2>FoodApp Receipt</h2>
+                            <div class="order-number">${document.getElementById('order-number').textContent}</div>
+                            <div>${document.getElementById('order-date').textContent}</div>
+                        </div>
+                        
+                        <div class="details">
+                            <div class="detail-item">
+                                <span>Payment Method:</span>
+                                <span>${document.getElementById('payment-method').textContent}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Status:</span>
+                                <span>${document.getElementById('order-status').textContent}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="items">
+                            <h4>Items:</h4>
+                            ${Array.from(document.querySelectorAll('.order-item')).map(item => {
+                                const name = item.querySelector('div[style*="font-weight: 600"]').textContent;
+                                const details = item.querySelector('.text-muted').textContent;
+                                const price = item.querySelector('div[style*="color: #28a745"]').textContent;
+                                return `
+                                    <div class="item">
+                                        <div>
+                                            <div>${name}</div>
+                                            <div style="font-size: 12px; color: #666;">${details}</div>
+                                        </div>
+                                        <div>${price}</div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                        
+                        <div class="details">
+                            <div class="detail-item">
+                                <span>Subtotal:</span>
+                                <span>${document.getElementById('order-subtotal').textContent}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Shipping:</span>
+                                <span>${document.getElementById('order-shipping').textContent}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Tax:</span>
+                                <span>${document.getElementById('order-tax').textContent}</span>
+                            </div>
+                            <div class="detail-item total">
+                                <span>Total:</span>
+                                <span>${document.getElementById('order-total').textContent}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="thank-you">
+                            <p>Thank you for your order!</p>
+                            <p>Delivery Address: ${document.getElementById('delivery-address').textContent}</p>
+                            <p>Contact: ${document.getElementById('customer-phone').textContent}</p>
+                        </div>
+                    </body>
+                    </html>
+                `;
+                
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(printContent);
+                printWindow.document.close();
+                printWindow.focus();
+                setTimeout(() => {
+                    printWindow.print();
+                    printWindow.close();
+                }, 250);
+            }
+
+            // Share on WhatsApp
+            function shareOnWhatsApp() {
+                const orderNumber = document.getElementById('order-number').textContent;
+                const orderTotal = document.getElementById('order-total').textContent;
+                const deliveryTime = document.getElementById('delivery-time').textContent;
+                
+                const message = `I just placed an order on FoodApp! 🍕\n\nOrder: ${orderNumber}\nTotal: ${orderTotal}\nEstimated Delivery: ${deliveryTime}\n\nCheck out FoodApp for delicious food!`;
+                
+                const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
+            }
+
+            // Track order (simulated)
+            function trackOrder() {
+                alert('Order tracking will be available once your order is out for delivery!\n\nYou will receive a tracking link via SMS.');
+            }
+
+            // Simulate order status updates
+            function simulateOrderUpdates() {
+                setTimeout(() => {
+                    // Update status to "On the Way"
+                    document.getElementById('order-status').textContent = 'On the Way';
+                    document.getElementById('order-status').className = 'badge bg-warning';
+                    
+                    // Update timeline
+                    document.querySelectorAll('.timeline-step')[2].classList.remove('pending');
+                    document.querySelectorAll('.timeline-step')[2].classList.add('active');
+                    
+                    setTimeout(() => {
+                        // Update status to "Delivered"
+                        document.getElementById('order-status').textContent = 'Delivered';
+                        document.getElementById('order-status').className = 'badge bg-success';
+                        
+                        // Update timeline
+                        document.querySelectorAll('.timeline-step')[3].classList.remove('pending');
+                        document.querySelectorAll('.timeline-step')[3].classList.add('active');
+                        
+                        // Show delivered message
+                        alert('🎉 Your order has been delivered! Enjoy your meal!');
+                        
+                    }, 10000); // 10 seconds
+                }, 15000); // 15 seconds
+            }
+
+            // Start order simulation (for demo purposes)
+            setTimeout(simulateOrderUpdates, 5000);
+        </script>
+    </body>
+</html>
